@@ -83,6 +83,12 @@ export default {
 	}
 }
 
+//넓이값 공통
+.c-inner { 
+	padding: 0 4%;
+	margin: 0 auto;
+}
+
 .skip-nav {
 	&__link {
 		overflow: hidden;
@@ -91,5 +97,82 @@ export default {
 		height: 0;
 	}
 }
+
+.c-hr {
+	background: #f9f9f9;
+	border: none;
+	height: 6px;
+}
+
+//checkbox
+.check {
+    position: relative;
+    cursor: pointer;
+    font-size: $fz18;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    line-height: 21px;
+    display: inline-flex;
+    align-items: center;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    &__mark {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        border: 1px solid #dcdcdc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+		color: #fff;
+		font-size: 2px;
+    }
+
+    input:checked ~ &__mark {
+        background-color: #aface9;
+        border-color: #aface9;
+    }
+
+    input:checked ~ &__mark::after {
+        content: "";
+        display: block;
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+		transform: translate(-50%, -50%);
+        background: #aface9;
+        border-radius: 50%;
+        animation: check 1 1s forwards;
+    }
+
+    @keyframes check {
+        from {
+            transform: translate(-50%, -50%) scale(0.2);
+			transform-origin: center;
+			
+        }
+        to {
+            transform: translate(-50%, -50%) scale(1);
+			transform-origin: center;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+}
+
+
+
 
 </style>

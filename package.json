@@ -12,6 +12,8 @@
   "dependencies": {
     "vue": "^2.5.11",
     "vue-router": "^3.5.1",
+    "vue-swipe-actions": "^2.0.0-beta.20",
+    "vue-weblineindia-swipe": "^2.0.0-beta.20",
     "vuex": "^3.6.2"
   },
   "browserslist": [

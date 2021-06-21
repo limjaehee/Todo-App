@@ -1,7 +1,7 @@
 <template>
 <div class="layout">
     <!-- header -->
-    <header class="header">
+    <header class="header" v-if="isHeader">
         <div class="c-inner">
             <div class="header__wrapper">
                 <!-- logo -->
@@ -14,33 +14,19 @@
         </div>
     </header>
     <!-- content -->
-    <main id="contents" class="contents">
+    <main id="contents" class="contents" :style="{padding: [!isHeader ? 0 : '']}">
         <slot />
     </main>
-    <!-- scroll top -->
-    <button class="to-top-btn">
-        <svg width="11.834" height="18.5" viewBox="0 0 11.834 18.5">
-            <path d="M17.86,6.006l-5.188,5.188a.479.479,0,1,1-.678-.678l4.37-4.37H.479a.479.479,0,0,1,0-.958H16.365L11.995.818A.479.479,0,1,1,12.672.14L17.86,5.328A.479.479,0,0,1,17.86,6.006Z" transform="translate(0.25 18.25) rotate(-90)" fill="#222" stroke="#222" stroke-width="0.5"/>
-        </svg>
-    </button>
-    <!-- footer -->
-    <footer class="footer" v-if="isFooter">
-        <div class="footer__line">
-            <div class="c-inner">
-                <div class="footer__wrapper">
-                </div>
-            </div>
-        </div>
-    </footer>
+    <slot name="popup"></slot>
 </div>
 </template>
 
 <script>
 export default {
     props: {
-        isFooter: {
+        isHeader: {
             type: Boolean
-        }
+        },
     },
     mounted() {
         
@@ -115,10 +101,6 @@ export default {
     width: 100%;
     position: relative;
     padding-top: $headerH;
-}
-
-.footer {
-   background: skyblue;
 }
 
 </style>
