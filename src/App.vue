@@ -172,7 +172,68 @@ export default {
     }
 }
 
+//배경 공통
+.black-bg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+}
 
+//버튼 스타일 정의 공통
+.c-btn {
+	border-radius: 4px;
+	border: 1px solid #eee;
+	padding: .5rem 1rem;
+	min-width: 100px;
+	color: #847ae6;
+	font-size: $fz16;
+	display: flex;
+	display: inline-block;
 
+	&:hover,&:active {
+		background: #F8F8F8;
+	}
 
+	i {
+		margin-right: 15px;
+		//font-size: $fz16;
+	}
+
+	//그레이배경
+	&.full {
+		background: #eee;
+		color: #fff;
+		border-color: #eee;
+
+		&:hover,&:active {
+			background: #e6e6e6;
+		}
+	}
+
+	//컬러 배경
+	&.clear {
+		background: $c-color;
+		border-color: $c-color;
+		color: #fff;
+        box-shadow: 0 3px 6px rgba(132,122,230,.39);
+
+        &:hover,&:active {
+			background: $c-color;
+		}
+
+		i {
+			color: #fff;
+		}
+	}
+}
+
+//트렌지션
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
 </style>

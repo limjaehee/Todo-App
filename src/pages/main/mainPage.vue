@@ -9,10 +9,10 @@
     <div class="m-banner">
         <div class="c-inner">
             <div class="m-banner__wrapper">
-                <strong class="m-banner__ongoing">16</strong>
+                <strong class="m-banner__ongoing">{{OngoingLength()}}</strong>
                 <div>
                     <p class="m-banner__message">Tasks for today</p>
-                    <p class="m-banner__complete"><span  class="m-banner__complete__num">08</span> complete</p>
+                    <p class="m-banner__complete"><span  class="m-banner__complete__num">{{CompletedLength()}}</span> complete</p>
                 </div>
             </div>
         </div>
@@ -27,13 +27,15 @@
             ref="list"
             class="card"
             :disabled="!enabled"
-            :items="mockSwipeList"
+            :items="OngoingList"
             item-key="id"
             @swipeout:click="itemClick">
-            <template v-slot="{ item }">
+            <template v-slot="{ item, index }">
                 <div class="m-task__item">
                     <label class="check">
-                        <input type="checkbox">
+                        <input type="checkbox" 
+                            v-model="item.ischeck" 
+                            :checked="OngoingCEvt(index,item.ischeck)">
                         <i class="check__mark icon-check"></i>
                     </label>
                     <div class="m-task__item__txtbox">
@@ -66,13 +68,15 @@
             ref="list"
             class="card"
             :disabled="!enabled"
-            :items="mockSwipeList"
+            :items="CompletedList"
             item-key="id"
             @swipeout:click="itemClick">
-            <template v-slot="{ item }">
+            <template v-slot="{ item, index }">
                 <div class="m-task__item">
                     <label class="check">
-                        <input type="checkbox" checked>
+                        <input type="checkbox"
+                            v-model="item.ischeck"
+                            :checked="CompletedCEvt(index,item.ischeck)">
                         <i class="check__mark icon-check"></i>
                     </label>
                     <div class="m-task__item__txtbox">
@@ -94,8 +98,35 @@
         </swipe-list>
     </div>
     <div class="end-ui"></div>
+    <!-- popup -->
     <template #popup>
-        <button class="icon-plus m-add-btn"></button>
+        <button class="icon-plus m-add-btn" @click="AddPopup=true"></button>
+        <transition name="fade">
+            <AddPopup
+                v-if="AddPopup"
+                class="task-popup"
+                :Width="'90%'"
+                :title="'Enter task'"
+                :BtnClass="BtnClass()"
+                @close="AddPopup=false">
+                <template #cont>
+                    <div class="task-popup__cont">
+                        <div class="c-input" :class="`${isCheck.title ? 'clear' : ''}`">
+                            <input type="text" class="c-input__input"
+                                v-model="newTask.title"
+                                @blur="isCheck.title = true"/>
+                            <label for="sampleId" class="c-input__title">Enter your task</label>
+                        </div>
+                        <div class="c-input" :class="`${isCheck.description ? 'clear' : ''}`">
+                            <input type="text" class="c-input__input"
+                                v-model="newTask.description"
+                                @blur="isCheck.description = true"/>
+                            <label for="sampleId" class="c-input__title">Enter your description</label>
+                        </div>
+                    </div>
+                </template>
+            </AddPopup>
+        </transition>
     </template>
 </Layout>
 </template>
@@ -103,56 +134,166 @@
 <script>
 //https://github.com/weblineindia/Vue-Swipe-Action
 import { SwipeList, SwipeOut } from 'vue-weblineindia-swipe';
+import AddPopup from './component/AddPopup';
 
 export default {
-  components: {
-    SwipeOut,
-    SwipeList
-  },
-  data() {
-    return {
-      enabled: true,
-      mockSwipeList: [
-          {
-            task: "Design Homework",
-            description: "Hans Teacher",
-            time: '12:00',
-          },
-          {
-            task: "Web Coding",
-            description: "Anna Teacher",
-            time: '13:00',
-          },
-      ]
-    };
-  },
-  methods: {
-    revealFirstRight() {
-      this.$refs.list.revealRight(0);
+    components: {
+        SwipeOut,
+        SwipeList,
+        AddPopup
     },
-    revealFirstLeft() {
-      this.$refs.list.revealLeft(0);
+    data() {
+        return {
+            enabled: true,
+            //팝업
+            AddPopup: false,
+            newTask: {
+                title: '',
+                description:'',
+            },
+            isCheck: {
+                title: '',
+                description: '',
+            },
+            //추가된 task
+            OngoingList: [
+                {
+                    task: "Design Homework",
+                    description: "Hans Teacher",
+                    time: '12:00',
+                    ischeck: false,
+                },
+                {
+                    task: "Web Coding",
+                    description: "Anna Teacher",
+                    time: '13:00',
+                    ischeck: false,
+                },
+                {
+                    task: "Ui Design",
+                    description: "Hans Teacher",
+                    time: '12:00',
+                    ischeck: false,
+                },
+                {
+                    task: "Coffee time",
+                    description: "Anna Teacher",
+                    time: '13:00',
+                    ischeck: false,
+                },
+            ],
+            //완료된 task
+            CompletedList: [
+                {
+                    task: "Design Homework",
+                    description: "Hans Teacher",
+                    time: '12:00',
+                    ischeck: true,
+                },
+                {
+                    task: "Web Coding",
+                    description: "Anna Teacher",
+                    time: '13:00',
+                    ischeck: true,
+                },
+                {
+                    task: "Ui Design",
+                    description: "Hans Teacher",
+                    time: '12:00',
+                    ischeck: true,
+                },
+                {
+                    task: "Coffee time",
+                    description: "Anna Teacher",
+                    time: '13:00',
+                    ischeck: true,
+                },
+            ],
+        };
     },
-    closeFirst() {
-      this.$refs.list.closeActions(0);
+    methods: {
+        revealFirstRight() {
+            this.$refs.list.revealRight(0);
+        },
+        revealFirstLeft() {
+            this.$refs.list.revealLeft(0);
+        },
+        closeFirst() {
+            this.$refs.list.closeActions(0);
+        },
+        closeAll() {
+            this.$refs.list.closeActions();
+        },
+        remove(item) {
+            this.OngoingList = this.OngoingList.filter(i => i !== item);
+            this.CompletedList = this.CompletedList.filter(i => i !== item);
+        },
+        itemClick(e) {
+            //console.log(e, "item click");
+        },
+        fbClick(e) {
+            console.log(e, "First Button Click");
+        },
+        sbClick(e) {
+            console.log(e, "Second Button Click");
+        },
+        //체크할경우
+        OngoingCEvt(evt, ischeck) {
+            if(ischeck == true) {
+                //푸쉬를 먼저 하고
+                this.CompletedList.push({
+                    task: this.OngoingList[evt].task,
+                    description: this.OngoingList[evt].description,
+                    time: this.OngoingList[evt].time,
+                    ischeck: true
+                })
+                //잘라내는 방식
+                this.OngoingList.splice(evt, 1);
+            }
+        },
+        //체크해제할경우
+        CompletedCEvt(evt, ischeck) {
+            if(ischeck == false) {
+                //푸쉬를 먼저 하고
+                this.OngoingList.push({
+                    task: this.CompletedList[evt].task,
+                    description: this.CompletedList[evt].description,
+                    time: this.CompletedList[evt].time,
+                })
+                //잘라내는 방식
+                this.CompletedList.splice(evt, 1);
+            }
+        },
+        //task 개수
+        OngoingLength() {
+            const i = this.OngoingList.length
+            if(i<10&&!i==0) {
+                return '0'+i
+            }else {
+                return i
+            }
+        },
+        //완료된 task 개수
+        CompletedLength() {
+            const i = this.CompletedList.length
+            if(i<10&&!i==0) {
+                return '0'+i
+            }else {
+                return i
+            }
+        },
+        //팝업 버튼 활성화
+        BtnClass() {
+            if(!!this.newTask.title.trim()) {
+                if(!!this.newTask.description.trim()) {
+                    return 'clear'
+                }
+            }
+        }
     },
-    closeAll() {
-      this.$refs.list.closeActions();
-    },
-    remove(item) {
-      this.mockSwipeList = this.mockSwipeList.filter(i => i !== item);
-      // console.log(e, 'remove');
-    },
-    itemClick(e) {
-      console.log(e, "item click");
-	},
-    fbClick(e) {
-      console.log(e, "First Button Click");
-    },
-    sbClick(e) {
-      console.log(e, "Second Button Click");
-	},
-  },
+    computed: {
+
+    }
 };
 
 </script>
@@ -226,6 +367,7 @@ export default {
         color: #999;
         font-size: $fz20;
         font-weight: 600;
+        line-height: 1.1;
     }
 
     &__name {
@@ -394,10 +536,11 @@ export default {
         height: 8vh;
         bottom: 0;
         left: 0;
-        background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,1) 100%);
+        background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
     }
 }
 
+//추가 버튼
 .m-add-btn {
     position: fixed;
     bottom: 2rem;
@@ -410,4 +553,65 @@ export default {
     font-size: 18px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16);
 }
+
+//팝업
+.task-popup {
+    &__cont {
+        padding: 1.5rem 1.5rem 0;
+        box-sizing: border-box;
+    }
+}
+
+.c-input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 51px;
+    justify-content: center;
+    position:relative; 
+    margin-bottom: 1.5rem;
+    
+    &__title {
+        color: #cbcbcb;
+        font-size: $fz12;
+        position:absolute; 
+        left:0; 
+        bottom:0; 
+        padding:0 6px; 
+        color:#999; 
+        font-weight:normal; 
+        background:#fff; 
+        transform:scale(1) translate(4px, -18px); 
+        transition:all .15s; 
+        pointer-events:none;
+    }
+
+    &__input {
+        font-size: $fz14;
+        outline:none;
+        height: 51px;
+        padding: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #eee;
+        border-radius: 2px;
+
+        &::placeholder {
+            color: #cbcbcb;
+        }
+
+        &:focus {
+            border:1px solid $c-color;
+            &~.c-input__title {
+                transform:scale(.85) translate(-10px, -48px);
+            }
+        }
+    }
+
+    &.clear {
+        .c-input__title {
+            transform:scale(.85) translate(-10px, -48px);
+        }
+    }
+}
+
 </style>
