@@ -108,6 +108,7 @@
                 :Width="'90%'"
                 :title="'Enter task'"
                 :BtnClass="BtnClass()"
+                @BtnEvt="BtnEvt()"
                 @close="AddPopup=false">
                 <template #cont>
                     <div class="task-popup__cont">
@@ -184,30 +185,7 @@ export default {
             ],
             //완료된 task
             CompletedList: [
-                {
-                    task: "Design Homework",
-                    description: "Hans Teacher",
-                    time: '12:00',
-                    ischeck: true,
-                },
-                {
-                    task: "Web Coding",
-                    description: "Anna Teacher",
-                    time: '13:00',
-                    ischeck: true,
-                },
-                {
-                    task: "Ui Design",
-                    description: "Hans Teacher",
-                    time: '12:00',
-                    ischeck: true,
-                },
-                {
-                    task: "Coffee time",
-                    description: "Anna Teacher",
-                    time: '13:00',
-                    ischeck: true,
-                },
+                
             ],
         };
     },
@@ -240,15 +218,17 @@ export default {
         //체크할경우
         OngoingCEvt(evt, ischeck) {
             if(ischeck == true) {
-                //푸쉬를 먼저 하고
-                this.CompletedList.push({
-                    task: this.OngoingList[evt].task,
-                    description: this.OngoingList[evt].description,
-                    time: this.OngoingList[evt].time,
-                    ischeck: true
-                })
-                //잘라내는 방식
-                this.OngoingList.splice(evt, 1);
+                setTimeout(()=>{
+                    //푸쉬를 먼저 하고
+                    this.CompletedList.push({
+                        task: this.OngoingList[evt].task,
+                        description: this.OngoingList[evt].description,
+                        time: this.OngoingList[evt].time,
+                        ischeck: true
+                    })
+                    //잘라내는 방식
+                    this.OngoingList.splice(evt, 1);
+                },500)
             }
         },
         //체크해제할경우
@@ -284,11 +264,24 @@ export default {
         },
         //팝업 버튼 활성화
         BtnClass() {
+
             if(!!this.newTask.title.trim()) {
                 if(!!this.newTask.description.trim()) {
                     return 'clear'
                 }
             }
+            
+        },
+        //완료 버튼 클릭
+        BtnEvt() {
+            this.OngoingList.push({
+                task: this.newTask.title,
+                description: this.newTask.description,
+                time: '00',
+            })
+            this.AddPopup = false
+            this.newTask.title = '';
+            this.newTask.description = '';
         }
     },
     computed: {
