@@ -48,9 +48,9 @@
                     </p>
                 </div>
             </template>
-            <template v-slot:right="{ item }">
+            <template v-slot:right="{ item, index }">
                 <div class="swipeout-action m-task__option">
-                    <button class="icon-menu"></button>
+                    <button class="icon-menu" @click="PopupOn(index,item)"></button>
                     <button class="icon-delete" @click="remove(item)"></button>
                 </div>
             </template>
@@ -91,7 +91,6 @@
             </template>
             <template v-slot:right="{ item }">
                 <div class="swipeout-action m-task__option">
-                    <button class="icon-menu"></button>
                     <button class="icon-delete" @click="remove(item)"></button>
                 </div>
             </template>
@@ -109,7 +108,7 @@
                 :title="'Enter task'"
                 :BtnClass="BtnClass()"
                 @BtnEvt="BtnEvt()"
-                @close="AddPopup=false">
+                @close="Close()">
                 <template #cont>
                     <div class="task-popup__cont">
                         <div class="c-input" :class="`${isCheck.title ? 'clear' : ''}`">
@@ -158,7 +157,7 @@ export default {
             },
             //추가된 task
             OngoingList: [
-                {
+               {
                     task: "Design Homework",
                     description: "Hans Teacher",
                     time: '12:00',
@@ -187,6 +186,9 @@ export default {
             CompletedList: [
                 
             ],
+            //setting
+            settingIndex: 0,
+            settingOn: false,
         };
     },
     methods: {
@@ -274,12 +276,48 @@ export default {
         },
         //완료 버튼 클릭
         BtnEvt() {
-            this.OngoingList.push({
-                task: this.newTask.title,
-                description: this.newTask.description,
-                time: '00',
-            })
+            //time
+            const date = new Date();
+            const minutes = date.getMinutes();
+            const hours = date.getHours();
+
+            //새로 push일 경우
+            if(this.settingOn == false) {
+                this.OngoingList.push({
+                    task: this.newTask.title,
+                    description: this.newTask.description,
+                    time: `${hours < 10 ? `0${hours}`: hours}:${minutes < 10 ? `0${minutes}`:minutes}`,
+                })
+            }else {
+                //기존 data setting일 경우
+                this.OngoingList[this.settingIndex].task = this.newTask.title;
+                this.OngoingList[this.settingIndex].description = this.newTask.description;
+                this.OngoingList[this.settingIndex].time = `${hours < 10 ? `0${hours}`: hours}:${minutes < 10 ? `0${minutes}`:minutes}`;
+                this.settingOn = false
+            }
+
             this.AddPopup = false
+            this.newTask.title = '';
+            this.newTask.description = '';
+            
+        },
+        //설정 클릭시
+        PopupOn(i,item) {
+            this.AddPopup = true;
+
+            //팝업에 데이터 표시
+            this.newTask.title = item.task;
+            this.isCheck.title = item.task;
+            this.newTask.description = item.description;
+            this.isCheck.description = item.description;
+
+            //setting값
+            this.settingOn = true;
+            this.settingIndex = i
+        },
+        //close btn
+        Close() {
+            this.AddPopup = false;
             this.newTask.title = '';
             this.newTask.description = '';
         }
