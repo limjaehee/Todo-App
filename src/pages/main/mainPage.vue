@@ -157,34 +157,45 @@ export default {
             },
             //추가된 task
             OngoingList: [
-               {
-                    task: "Design Homework",
-                    description: "Hans Teacher",
-                    time: '12:00',
-                    ischeck: false,
-                },
-                {
-                    task: "Web Coding",
-                    description: "Anna Teacher",
-                    time: '13:00',
-                    ischeck: false,
-                },
-                {
-                    task: "Ui Design",
-                    description: "Hans Teacher",
-                    time: '12:00',
-                    ischeck: false,
-                },
-                {
-                    task: "Coffee time",
-                    description: "Anna Teacher",
-                    time: '13:00',
-                    ischeck: false,
-                },
+            //    {
+            //         task: "Design Homework",
+            //         description: "Hans Teacher",
+            //         time: '12:00',
+            //         ischeck: false,
+            //     },
+            //     {
+            //         task: "Web Coding",
+            //         description: "Anna Teacher",
+            //         time: '13:00',
+            //         ischeck: false,
+            //     },
+            //     {
+            //         task: "Ui Design",
+            //         description: "Hans Teacher",
+            //         time: '12:00',
+            //         ischeck: false,
+            //     },
             ],
             //완료된 task
             CompletedList: [
-                
+                // {
+                //     task: "Design Homework",
+                //     description: "Hans Teacher",
+                //     time: '12:00',
+                //     ischeck: true,
+                // },
+                // {
+                //     task: "Web Coding",
+                //     description: "Anna Teacher",
+                //     time: '13:00',
+                //     ischeck: true,
+                // },
+                // {
+                //     task: "Ui Design",
+                //     description: "Hans Teacher",
+                //     time: '12:00',
+                //     ischeck: true,
+                // },
             ],
             //setting
             settingIndex: 0,
@@ -280,15 +291,16 @@ export default {
             const date = new Date();
             const minutes = date.getMinutes();
             const hours = date.getHours();
+            const title = this.newTask.title;
 
             //새로 push일 경우
-            if(this.settingOn == false) {
+            if(this.settingOn == false && !title == '') {
                 this.OngoingList.push({
                     task: this.newTask.title,
                     description: this.newTask.description,
                     time: `${hours < 10 ? `0${hours}`: hours}:${minutes < 10 ? `0${minutes}`:minutes}`,
                 })
-            }else {
+            }else if(this.settingOn == true && !title == '') {
                 //기존 data setting일 경우
                 this.OngoingList[this.settingIndex].task = this.newTask.title;
                 this.OngoingList[this.settingIndex].description = this.newTask.description;
@@ -297,9 +309,7 @@ export default {
             }
 
             this.AddPopup = false
-            this.newTask.title = '';
-            this.newTask.description = '';
-            
+            this.reset()
         },
         //설정 클릭시
         PopupOn(i,item) {
@@ -318,20 +328,41 @@ export default {
         //close btn
         Close() {
             this.AddPopup = false;
+            this.reset();
+        },
+        //reset
+        reset() {
             this.newTask.title = '';
+            this.isCheck.title = '';
             this.newTask.description = '';
+            this.isCheck.description = '';
         }
     },
     computed: {
 
+    },
+    mounted() {
+        const banner = document.querySelector('.m-banner');
+        const message = document.querySelector('.m-message');
+        const bannerY = banner.getBoundingClientRect().top
+        
+        window.addEventListener('scroll', function(){
+            const scrollY = window.scrollY;
+
+            if(scrollY >= bannerY) {
+                banner.classList.add('on')
+                message.classList.add('on')
+            }else {
+                banner.classList.remove('on')
+                message.classList.remove('on')
+            }
+        });
     }
 };
 
 </script>
 
 <style lang="scss">
-
-@import '../../assets/css/common';
 
 .swipeout {
   position: relative;
@@ -394,6 +425,10 @@ export default {
 .m-message {
     padding: 40px 0 25px 0;
 
+    &.on {
+        padding-bottom: 120px;
+    }
+
     &__title {
         color: #999;
         font-size: $fz20;
@@ -412,6 +447,16 @@ export default {
 .m-banner {
     position: relative;
     z-index: 1;
+
+    &.on {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding-top: 1rem;
+        width: 100%;
+        z-index: 10;
+        background: #fff;
+    }
 
     &::after {
         content: "";

@@ -29,7 +29,6 @@ export default {
 
 <style lang="scss">
 @import './assets/css/reset';
-@import './assets/css/common';
 
 .page-loader {
     display: block;
@@ -135,7 +134,7 @@ export default {
         justify-content: center;
         position: relative;
 		color: #fff;
-		font-size: 2px;
+		font-size: 16px;
     }
 
     input:checked ~ &__mark {

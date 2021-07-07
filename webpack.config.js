@@ -22,7 +22,14 @@ module.exports = {
         use: [
           'vue-style-loader',
           'css-loader',
-          'sass-loader'
+          'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              // Provide path to the file with resources
+              resources: './src/assets/css/common.scss',
+            },
+          },
         ],
       },
       {
@@ -44,7 +51,14 @@ module.exports = {
             'scss': [
               'vue-style-loader',
               'css-loader',
-              'sass-loader'
+              'sass-loader',
+              {
+                loader: 'sass-resources-loader',
+                options: {
+                  // Provide path to the file with resources
+                  resources: './src/assets/css/common.scss',
+                },
+              },
             ],
             'sass': [
               'vue-style-loader',

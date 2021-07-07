@@ -38,7 +38,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../assets/css/common';
 
 //팝업 공통
 .c-popup {

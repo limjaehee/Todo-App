@@ -35,7 +35,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/css/common';
 
 .header {
     position: fixed;
