@@ -1,69 +1,103 @@
-html, body {
-    height: 100%;
-    width: 100%;
-}
-  
-#app {
-    height: 100%;
-    width: 100%;
+html,
+body {
+  height: 100%;
+  width: 100%;
 }
 
-body, input, select, textarea, button, .ui-btn, pre{
-    margin: 0; 
-    padding: 0; 
-    border: 0; 
-    font-family: 'noto-fonts';
-    font-weight: 300;
-    vertical-align: baseline;
+#app {
+  height: 100%;
+  width: 100%;
 }
-h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, ul, li, span, a, strong, em, i, address{
-    margin: 0; 
-    padding: 0;
-    font-weight: 300;
-    font-style: normal;
+
+body,
+input,
+select,
+textarea,
+button,
+.ui-btn,
+pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "noto-fonts";
+  font-weight: 300;
+  vertical-align: baseline;
 }
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-    display: block;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+span,
+a,
+strong,
+em,
+i,
+address {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  font-style: normal;
 }
-li, ol li:before{
-    list-style: none; 
-    content:none !important
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
-textarea{
-    margin: 0; 
-    overflow-y: auto !important; 
-    font-size: 16px; 
-    resize: none !important;
+li,
+ol li:before {
+  list-style: none;
+  content: none !important;
 }
-a{
-    text-decoration: none; 
-    color: #000;
+textarea {
+  margin: 0;
+  overflow-y: auto !important;
+  font-size: 16px;
+  resize: none !important;
 }
-*:focus{
-    outline:0 !important
+a {
+  text-decoration: none;
+  color: #000;
+}
+*:focus {
+  outline: 0 !important;
 }
 
 button {
-    background: none;
-    font-size: 16px;
-    cursor: pointer;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="number"] {
-    width: 100%;
+  width: 100%;
 }
 
 input[type="text"]::placeholder,
 input[type="password"]::placeholder,
 input[type="number"]::placeholder {
-    color: #AAAAAA;
+  color: #aaaaaa;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="number"]:focus {
-   
 }
