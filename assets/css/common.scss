@@ -1,0 +1,14 @@
+$c-color: #7773ce;
+$f-color: #515151;
+$headerH: 60px;
+
+//폰트 사이즈
+@function calculate-rem($size, $default) {
+  $rem-size: $size/$default;
+  @return $rem-size * 1rem;
+}
+
+@mixin font-size($size) {
+  //font-size:$size;
+  font-size: calculate-rem($size, 16px);
+}
