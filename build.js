@@ -12508,12 +12508,12 @@ Vue.compile = compileToFunctions;
 //
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'app',
-    data: function data() {
-        return {
-            loader: false
-        };
-    }
+  name: "app",
+  data: function data() {
+    return {
+      loader: false
+    };
+  }
 });
 
 /***/ }),
@@ -12656,246 +12656,274 @@ Vue.compile = compileToFunctions;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 //https://github.com/weblineindia/Vue-Swipe-Action
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    components: {
-        SwipeOut: __WEBPACK_IMPORTED_MODULE_0_vue_weblineindia_swipe__["b" /* SwipeOut */],
-        SwipeList: __WEBPACK_IMPORTED_MODULE_0_vue_weblineindia_swipe__["a" /* SwipeList */],
-        AddPopup: __WEBPACK_IMPORTED_MODULE_1__component_AddPopup__["a" /* default */]
+  components: {
+    SwipeOut: __WEBPACK_IMPORTED_MODULE_0_vue_weblineindia_swipe__["b" /* SwipeOut */],
+    SwipeList: __WEBPACK_IMPORTED_MODULE_0_vue_weblineindia_swipe__["a" /* SwipeList */],
+    AddPopup: __WEBPACK_IMPORTED_MODULE_1__component_AddPopup__["a" /* default */]
+  },
+  data: function data() {
+    return {
+      enabled: true,
+      //팝업
+      AddPopup: false,
+      newTask: {
+        title: "",
+        description: ""
+      },
+      isCheck: {
+        title: "",
+        description: ""
+      },
+      //추가된 task
+      OngoingList: [
+        //    {
+        //         task: "Design Homework",
+        //         description: "Hans Teacher",
+        //         time: '12:00',
+        //         ischeck: false,
+        //     },
+        //     {
+        //         task: "Web Coding",
+        //         description: "Anna Teacher",
+        //         time: '13:00',
+        //         ischeck: false,
+        //     },
+        //     {
+        //         task: "Ui Design",
+        //         description: "Hans Teacher",
+        //         time: '12:00',
+        //         ischeck: false,
+        //     },
+      ],
+      //완료된 task
+      CompletedList: [
+        // {
+        //     task: "Design Homework",
+        //     description: "Hans Teacher",
+        //     time: '12:00',
+        //     ischeck: true,
+        // },
+        // {
+        //     task: "Web Coding",
+        //     description: "Anna Teacher",
+        //     time: '13:00',
+        //     ischeck: true,
+        // },
+        // {
+        //     task: "Ui Design",
+        //     description: "Hans Teacher",
+        //     time: '12:00',
+        //     ischeck: true,
+        // },
+      ],
+      //setting
+      settingIndex: 0,
+      settingOn: false
+    };
+  },
+
+  methods: {
+    revealFirstRight: function revealFirstRight() {
+      this.$refs.list.revealRight(0);
     },
-    data: function data() {
-        return {
-            enabled: true,
-            //팝업
-            AddPopup: false,
-            newTask: {
-                title: '',
-                description: ''
-            },
-            isCheck: {
-                title: '',
-                description: ''
-            },
-            //추가된 task
-            OngoingList: [
-                //    {
-                //         task: "Design Homework",
-                //         description: "Hans Teacher",
-                //         time: '12:00',
-                //         ischeck: false,
-                //     },
-                //     {
-                //         task: "Web Coding",
-                //         description: "Anna Teacher",
-                //         time: '13:00',
-                //         ischeck: false,
-                //     },
-                //     {
-                //         task: "Ui Design",
-                //         description: "Hans Teacher",
-                //         time: '12:00',
-                //         ischeck: false,
-                //     },
-            ],
-            //완료된 task
-            CompletedList: [
-                // {
-                //     task: "Design Homework",
-                //     description: "Hans Teacher",
-                //     time: '12:00',
-                //     ischeck: true,
-                // },
-                // {
-                //     task: "Web Coding",
-                //     description: "Anna Teacher",
-                //     time: '13:00',
-                //     ischeck: true,
-                // },
-                // {
-                //     task: "Ui Design",
-                //     description: "Hans Teacher",
-                //     time: '12:00',
-                //     ischeck: true,
-                // },
-            ],
-            //setting
-            settingIndex: 0,
-            settingOn: false
-        };
+    revealFirstLeft: function revealFirstLeft() {
+      this.$refs.list.revealLeft(0);
+    },
+    closeFirst: function closeFirst() {
+      this.$refs.list.closeActions(0);
+    },
+    closeAll: function closeAll() {
+      this.$refs.list.closeActions();
+    },
+    remove: function remove(item) {
+      this.OngoingList = this.OngoingList.filter(function (i) {
+        return i !== item;
+      });
+      this.CompletedList = this.CompletedList.filter(function (i) {
+        return i !== item;
+      });
+    },
+    itemClick: function itemClick(e) {
+      //console.log(e, "item click");
+    },
+    fbClick: function fbClick(e) {
+      console.log(e, "First Button Click");
+    },
+    sbClick: function sbClick(e) {
+      console.log(e, "Second Button Click");
     },
 
-    methods: {
-        revealFirstRight: function revealFirstRight() {
-            this.$refs.list.revealRight(0);
-        },
-        revealFirstLeft: function revealFirstLeft() {
-            this.$refs.list.revealLeft(0);
-        },
-        closeFirst: function closeFirst() {
-            this.$refs.list.closeActions(0);
-        },
-        closeAll: function closeAll() {
-            this.$refs.list.closeActions();
-        },
-        remove: function remove(item) {
-            this.OngoingList = this.OngoingList.filter(function (i) {
-                return i !== item;
-            });
-            this.CompletedList = this.CompletedList.filter(function (i) {
-                return i !== item;
-            });
-        },
-        itemClick: function itemClick(e) {
-            //console.log(e, "item click");
-        },
-        fbClick: function fbClick(e) {
-            console.log(e, "First Button Click");
-        },
-        sbClick: function sbClick(e) {
-            console.log(e, "Second Button Click");
-        },
+    //체크할경우
+    OngoingCEvt: function OngoingCEvt(evt, ischeck) {
+      var _this = this;
 
-        //체크할경우
-        OngoingCEvt: function OngoingCEvt(evt, ischeck) {
-            var _this = this;
-
-            if (ischeck == true) {
-                setTimeout(function () {
-                    //푸쉬를 먼저 하고
-                    _this.CompletedList.push({
-                        task: _this.OngoingList[evt].task,
-                        description: _this.OngoingList[evt].description,
-                        time: _this.OngoingList[evt].time,
-                        ischeck: true
-                    });
-                    //잘라내는 방식
-                    _this.OngoingList.splice(evt, 1);
-                }, 500);
-            }
-        },
-
-        //체크해제할경우
-        CompletedCEvt: function CompletedCEvt(evt, ischeck) {
-            if (ischeck == false) {
-                //푸쉬를 먼저 하고
-                this.OngoingList.push({
-                    task: this.CompletedList[evt].task,
-                    description: this.CompletedList[evt].description,
-                    time: this.CompletedList[evt].time
-                });
-                //잘라내는 방식
-                this.CompletedList.splice(evt, 1);
-            }
-        },
-
-        //task 개수
-        OngoingLength: function OngoingLength() {
-            var i = this.OngoingList.length;
-            if (i < 10 && !i == 0) {
-                return '0' + i;
-            } else {
-                return i;
-            }
-        },
-
-        //완료된 task 개수
-        CompletedLength: function CompletedLength() {
-            var i = this.CompletedList.length;
-            if (i < 10 && !i == 0) {
-                return '0' + i;
-            } else {
-                return i;
-            }
-        },
-
-        //팝업 버튼 활성화
-        BtnClass: function BtnClass() {
-
-            if (!!this.newTask.title.trim()) {
-                if (!!this.newTask.description.trim()) {
-                    return 'clear';
-                }
-            }
-        },
-
-        //완료 버튼 클릭
-        BtnEvt: function BtnEvt() {
-            //time
-            var date = new Date();
-            var minutes = date.getMinutes();
-            var hours = date.getHours();
-            var title = this.newTask.title;
-
-            //새로 push일 경우
-            if (this.settingOn == false && !title == '') {
-                this.OngoingList.push({
-                    task: this.newTask.title,
-                    description: this.newTask.description,
-                    time: (hours < 10 ? '0' + hours : hours) + ':' + (minutes < 10 ? '0' + minutes : minutes)
-                });
-            } else if (this.settingOn == true && !title == '') {
-                //기존 data setting일 경우
-                this.OngoingList[this.settingIndex].task = this.newTask.title;
-                this.OngoingList[this.settingIndex].description = this.newTask.description;
-                this.OngoingList[this.settingIndex].time = (hours < 10 ? '0' + hours : hours) + ':' + (minutes < 10 ? '0' + minutes : minutes);
-                this.settingOn = false;
-            }
-
-            this.AddPopup = false;
-            this.reset();
-        },
-
-        //설정 클릭시
-        PopupOn: function PopupOn(i, item) {
-            this.AddPopup = true;
-
-            //팝업에 데이터 표시
-            this.newTask.title = item.task;
-            this.isCheck.title = item.task;
-            this.newTask.description = item.description;
-            this.isCheck.description = item.description;
-
-            //setting값
-            this.settingOn = true;
-            this.settingIndex = i;
-        },
-
-        //close btn
-        Close: function Close() {
-            this.AddPopup = false;
-            this.reset();
-        },
-
-        //reset
-        reset: function reset() {
-            this.newTask.title = '';
-            this.isCheck.title = '';
-            this.newTask.description = '';
-            this.isCheck.description = '';
-        }
+      if (ischeck == true) {
+        setTimeout(function () {
+          //푸쉬를 먼저 하고
+          _this.CompletedList.push({
+            task: _this.OngoingList[evt].task,
+            description: _this.OngoingList[evt].description,
+            time: _this.OngoingList[evt].time,
+            ischeck: true
+          });
+          //잘라내는 방식
+          _this.OngoingList.splice(evt, 1);
+        }, 500);
+      }
     },
-    computed: {},
-    mounted: function mounted() {
-        var banner = document.querySelector('.m-banner');
-        var message = document.querySelector('.m-message');
-        var bannerY = banner.getBoundingClientRect().top;
 
-        window.addEventListener('scroll', function () {
-            var scrollY = window.scrollY;
-
-            if (scrollY >= bannerY) {
-                banner.classList.add('on');
-                message.classList.add('on');
-            } else {
-                banner.classList.remove('on');
-                message.classList.remove('on');
-            }
+    //체크해제할경우
+    CompletedCEvt: function CompletedCEvt(evt, ischeck) {
+      if (ischeck == false) {
+        //푸쉬를 먼저 하고
+        this.OngoingList.push({
+          task: this.CompletedList[evt].task,
+          description: this.CompletedList[evt].description,
+          time: this.CompletedList[evt].time
         });
+        //잘라내는 방식
+        this.CompletedList.splice(evt, 1);
+      }
+    },
+
+    //task 개수
+    OngoingLength: function OngoingLength() {
+      var i = this.OngoingList.length;
+      if (i < 10 && !i == 0) {
+        return "0" + i;
+      } else {
+        return i;
+      }
+    },
+
+    //완료된 task 개수
+    CompletedLength: function CompletedLength() {
+      var i = this.CompletedList.length;
+      if (i < 10 && !i == 0) {
+        return "0" + i;
+      } else {
+        return i;
+      }
+    },
+
+    //팝업 버튼 활성화
+    BtnClass: function BtnClass() {
+      if (!!this.newTask.title.trim()) {
+        if (!!this.newTask.description.trim()) {
+          return "clear";
+        }
+      }
+    },
+
+    //완료 버튼 클릭
+    BtnEvt: function BtnEvt() {
+      //time
+      var date = new Date();
+      var minutes = date.getMinutes();
+      var hours = date.getHours();
+      var title = this.newTask.title;
+
+      //새로 push일 경우
+      if (this.settingOn == false && !title == "") {
+        this.OngoingList.push({
+          task: this.newTask.title,
+          description: this.newTask.description,
+          time: (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes)
+        });
+      } else if (this.settingOn == true && !title == "") {
+        //기존 data setting일 경우
+        this.OngoingList[this.settingIndex].task = this.newTask.title;
+        this.OngoingList[this.settingIndex].description = this.newTask.description;
+        this.OngoingList[this.settingIndex].time = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes);
+        this.settingOn = false;
+      }
+
+      this.AddPopup = false;
+      this.reset();
+    },
+
+    //설정 클릭시
+    PopupOn: function PopupOn(i, item) {
+      this.AddPopup = true;
+
+      //팝업에 데이터 표시
+      this.newTask.title = item.task;
+      this.isCheck.title = item.task;
+      this.newTask.description = item.description;
+      this.isCheck.description = item.description;
+
+      //setting값
+      this.settingOn = true;
+      this.settingIndex = i;
+    },
+
+    //close btn
+    Close: function Close() {
+      this.AddPopup = false;
+      this.reset();
+    },
+
+    //reset
+    reset: function reset() {
+      this.newTask.title = "";
+      this.isCheck.title = "";
+      this.newTask.description = "";
+      this.isCheck.description = "";
     }
+  },
+  computed: {},
+  mounted: function mounted() {
+    var banner = document.querySelector(".m-banner");
+    var message = document.querySelector(".m-message");
+    var bannerY = banner.getBoundingClientRect().top;
+
+    window.addEventListener("scroll", function () {
+      var scrollY = window.scrollY;
+
+      if (scrollY >= bannerY) {
+        banner.classList.add("on");
+        message.classList.add("on");
+      } else {
+        banner.classList.remove("on");
+        message.classList.remove("on");
+      }
+    });
+  }
 });
 
 /***/ }),
@@ -13242,20 +13270,19 @@ function areEqual(a, b) {
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    props: {
-        Width: {
-            type: String
-        },
-        title: {
-            type: String
-        },
-        BtnClass: {
-            type: String
-        }
+  props: {
+    Width: {
+      type: String
+    },
+    title: {
+      type: String
+    },
+    BtnClass: {
+      type: String
     }
+  }
 });
 
 /***/ }),
@@ -13325,27 +13352,27 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
 
 //components
 
-__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].component('Layout', __WEBPACK_IMPORTED_MODULE_6__components__["a" /* Layout */]);
+__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].component("Layout", __WEBPACK_IMPORTED_MODULE_6__components__["a" /* Layout */]);
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]); // router 기능 확장 선언
 
 var routes = [{
-	path: '/',
-	component: __WEBPACK_IMPORTED_MODULE_5__pages__["a" /* MainPage */]
+  path: "/",
+  component: __WEBPACK_IMPORTED_MODULE_5__pages__["a" /* MainPage */]
 }];
 
 // router 객체생성
 var router = new __WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]({
-	routes: routes
+  routes: routes
 });
 
 new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
-	render: function render(h) {
-		return h(__WEBPACK_IMPORTED_MODULE_1__App_vue__["a" /* default */]);
-	},
-	router: router, // router 추가
-	store: __WEBPACK_IMPORTED_MODULE_3__store__["a" /* store */]
-}).$mount('#app');
+  render: function render(h) {
+    return h(__WEBPACK_IMPORTED_MODULE_1__App_vue__["a" /* default */]);
+  },
+  router: router, // router 추가
+  store: __WEBPACK_IMPORTED_MODULE_3__store__["a" /* store */]
+}).$mount("#app");
 
 /***/ }),
 /* 11 */
@@ -13807,7 +13834,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(5);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8fbaf7aa_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6de9fc2f_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(18);
 function injectStyle (ssrContext) {
   __webpack_require__(15)
 }
@@ -13827,7 +13854,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8fbaf7aa_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6de9fc2f_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -13848,7 +13875,7 @@ var content = __webpack_require__(16);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("4c59d857", content, true, {});
+var update = __webpack_require__(2)("9af8d368", content, true, {});
 
 /***/ }),
 /* 16 */
@@ -13913,15 +13940,15 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 "use strict";
 var methods = {
-    Sample: function Sample(value) {
-        console.log('test');
-    }
+  Sample: function Sample(value) {
+    console.log("test");
+  }
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    install: function install(Vue) {
-        Vue.prototype.$Sample = methods.Sample;
-    }
+  install: function install(Vue) {
+    Vue.prototype.$Sample = methods.Sample;
+  }
 });
 
 /***/ }),
@@ -13938,10 +13965,10 @@ var methods = {
 __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
-	state: {},
-	mutations: {},
-	getters: {},
-	actions: {}
+  state: {},
+  mutations: {},
+  getters: {},
+  actions: {}
 });
 
 /***/ }),
@@ -18363,7 +18390,7 @@ if (inBrowser && window.Vue) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_MainPage_vue__ = __webpack_require__(6);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3583f924_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_MainPage_vue__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_139c0e92_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_MainPage_vue__ = __webpack_require__(37);
 function injectStyle (ssrContext) {
   __webpack_require__(25)
 }
@@ -18383,7 +18410,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_MainPage_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3583f924_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_MainPage_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_139c0e92_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_MainPage_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -18404,7 +18431,7 @@ var content = __webpack_require__(26);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("86936684", content, true, {});
+var update = __webpack_require__(2)("7de59136", content, true, {});
 
 /***/ }),
 /* 26 */
@@ -18415,7 +18442,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, ".swipeout{position:relative;overflow:hidden;display:flex}.swipeout .swipeout-left,.swipeout .swipeout-right{position:absolute;height:100%;display:flex;z-index:1}.swipeout .swipeout-left{left:0;transform:translateX(-100%)}.swipeout .swipeout-right{right:0;transform:translateX(100%)}.swipeout .swipeout-action,.swipeout .swipeout-content{transition:transform .2s}.swipeout.swipeout--no-transition .swipeout-action,.swipeout.swipeout--no-transition .swipeout-content{transition:none!important}.swipeout .swipeout-content{width:100%}.swipeout-non-selectable{user-select:none!important}.swipeout-no-pointer-events{pointer-events:none!important}.swipeout-list{display:flex;flex-direction:column}.swipeout-list-item{flex:1}.m-message{padding:40px 0 25px}.m-message.on{padding-bottom:120px}.m-message__title{color:#999;font-size:1.25rem;font-weight:600;line-height:1.1}.m-message__name{color:#515151;font-size:1.25rem;font-weight:600}.m-banner{position:relative;z-index:1}.m-banner.on{position:fixed;top:0;left:0;padding-top:1rem;width:100%;z-index:10;background:#fff}.m-banner:after{content:\"\";display:block;position:absolute;left:0;bottom:-6vh;height:6vh;background:linear-gradient(180deg,#fff,hsla(0,0%,100%,0));width:100%;z-index:-1}.m-banner__wrapper{background:#f6f6fb;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.05);padding:.7rem 1.2rem;box-sizing:border-box;display:flex;align-items:center}.m-banner__ongoing{color:#7773ce;font-size:3.125rem;font-weight:500;margin-right:7%}.m-banner__message{color:#515151;font-weight:600;margin-bottom:2px}.m-banner__complete{color:#999;font-size:.875rem}.m-banner__complete__num{color:#7773ce;font-weight:400;margin-right:5px}.m-task{padding:25px 0 15px}.m-task__title{font-weight:600;color:#515151;margin-bottom:1rem}.m-task__title:before{content:\"\";display:inline-block;width:15px;height:15px;border:1px solid #000;border-radius:2px;margin-right:10px}.m-task__title.ongoing:before{background:#f3e3f9;border-color:#f2dafb}.m-task__title.completed:before{background:#e3e3f9;border-color:#dadafe}.m-task__item{display:flex;justify-content:space-between;align-items:flex-start;padding:.4rem 4%}.m-task__item__txtbox{flex:1;margin-left:10px}.m-task__item__task{font-size:1rem;color:#515151;font-weight:500;line-height:1.3}.m-task__item__description{color:#c6ccd8;font-size:.75rem}.m-task__item__timebox{color:#a2a2a2;display:flex;align-items:center;font-size:.75rem}.m-task__item__timebox .icon-clock{margin-right:5px;font-size:14px}.m-task__option{margin-top:5px}.m-task__option .icon-menu{color:#dfdfdf;font-size:20px;margin-left:10px;width:24px;height:24px}.m-task__option .icon-delete{color:#ff6d6d;font-size:20px;margin-left:10px;margin-right:20px;width:24px;height:24px}.end-ui{width:100%;height:6vh}.end-ui:after{content:\"\";width:100%;position:fixed;height:8vh;bottom:0;left:0;background:linear-gradient(180deg,hsla(0,0%,100%,.2),#fff)}.m-add-btn{position:fixed;bottom:2rem;right:4%;width:40px;height:40px;background:linear-gradient(225deg,#7c78e5,#b082ec);border-radius:10px;color:#fff;font-size:18px;box-shadow:0 3px 6px rgba(0,0,0,.16)}.task-popup__cont{padding:1.5rem 1.5rem 0;box-sizing:border-box}.c-input{box-sizing:border-box;width:100%;height:51px;justify-content:center;position:relative;margin-bottom:1.5rem}.c-input__title{color:#cbcbcb;font-size:.75rem;position:absolute;left:0;bottom:0;padding:0 6px;color:#999;font-weight:400;background:#fff;transform:scale(1) translate(4px,-18px);transition:all .15s;pointer-events:none}.c-input__input{font-size:.875rem;outline:none;height:51px;padding:1rem;width:100%;box-sizing:border-box;border:1px solid #eee;border-radius:2px}.c-input__input::placeholder{color:#cbcbcb}.c-input__input:focus{border:1px solid #7773ce}.c-input.clear .c-input__title,.c-input__input:focus~.c-input__title{transform:scale(.85) translate(-10px,-48px)}", ""]);
+exports.push([module.i, ".swipeout{position:relative;overflow:hidden;display:flex}.swipeout .swipeout-left,.swipeout .swipeout-right{position:absolute;height:100%;display:flex;z-index:1}.swipeout .swipeout-left{left:0;transform:translateX(-100%)}.swipeout .swipeout-right{right:0;transform:translateX(100%)}.swipeout .swipeout-action,.swipeout .swipeout-content{transition:transform .2s}.swipeout.swipeout--no-transition .swipeout-action,.swipeout.swipeout--no-transition .swipeout-content{transition:none!important}.swipeout .swipeout-content{width:100%}.swipeout-non-selectable{user-select:none!important}.swipeout-no-pointer-events{pointer-events:none!important}.swipeout-list{display:flex;flex-direction:column}.swipeout-list-item{flex:1}.m-message{padding:40px 0 25px}.m-message.on{padding-bottom:120px}.m-message__title{color:#999;font-size:1.25rem;font-weight:600;line-height:1.1}.m-message__name{color:#515151;font-size:1.25rem;font-weight:600}.m-banner{position:relative;z-index:1}.m-banner.on{position:fixed;top:0;left:0;padding-top:1rem;width:100%;z-index:10;background:#fff}.m-banner:after{content:\"\";display:block;position:absolute;left:0;bottom:-6vh;height:6vh;background:linear-gradient(180deg,#fff,hsla(0,0%,100%,0));width:100%;z-index:-1}.m-banner__wrapper{background:#f6f6fb;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.05);padding:.7rem 1.2rem;box-sizing:border-box;display:flex;align-items:center}.m-banner__ongoing{color:#7773ce;font-size:3.125rem;font-weight:500;margin-right:24px}.m-banner__message{color:#515151;font-weight:600;margin-bottom:2px}.m-banner__complete{color:#999;font-size:.875rem}.m-banner__complete__num{color:#7773ce;font-weight:400;margin-right:5px}.m-task{padding:25px 0 15px}.m-task__title{font-weight:600;color:#515151;margin-bottom:1rem}.m-task__title:before{content:\"\";display:inline-block;width:15px;height:15px;border:1px solid #000;border-radius:2px;margin-right:10px}.m-task__title.ongoing:before{background:#f3e3f9;border-color:#f2dafb}.m-task__title.completed:before{background:#e3e3f9;border-color:#dadafe}.m-task__item{display:flex;justify-content:space-between;align-items:flex-start;padding:.4rem 4%}.m-task__item__txtbox{flex:1;margin-left:10px}.m-task__item__task{font-size:1rem;color:#515151;font-weight:500;line-height:1.3}.m-task__item__description{color:#c6ccd8;font-size:.75rem}.m-task__item__timebox{color:#a2a2a2;display:flex;align-items:center;font-size:.75rem}.m-task__item__timebox .icon-clock{margin-right:5px;font-size:14px}.m-task__option{margin-top:5px}.m-task__option .icon-menu{color:#dfdfdf;font-size:20px;margin-left:10px;width:24px;height:24px}.m-task__option .icon-delete{color:#ff6d6d;font-size:20px;margin-left:10px;margin-right:20px;width:24px;height:24px}.end-ui{width:100%;height:6vh}.end-ui:after{content:\"\";width:100%;position:fixed;height:8vh;bottom:0;left:0;background:linear-gradient(180deg,hsla(0,0%,100%,.2),#fff)}.m-add-btn{position:fixed;bottom:2rem;right:4%;width:40px;height:40px;background:linear-gradient(225deg,#7c78e5,#b082ec);border-radius:10px;color:#fff;font-size:18px;box-shadow:0 3px 6px rgba(0,0,0,.16)}.task-popup__cont{padding:1.5rem 1.5rem 0;box-sizing:border-box}.c-input{box-sizing:border-box;width:100%;height:51px;justify-content:center;position:relative;margin-bottom:1.5rem}.c-input__title{color:#cbcbcb;font-size:.75rem;position:absolute;left:0;bottom:0;padding:0 6px;color:#999;font-weight:400;background:#fff;transform:scale(1) translate(4px,-18px);transition:all .15s;pointer-events:none}.c-input__input{font-size:.875rem;outline:none;height:51px;padding:1rem;width:100%;box-sizing:border-box;border:1px solid #eee;border-radius:2px}.c-input__input::placeholder{color:#cbcbcb}.c-input__input:focus{border:1px solid #7773ce}.c-input.clear .c-input__title,.c-input__input:focus~.c-input__title{transform:scale(.85) translate(-10px,-48px)}", ""]);
 
 // exports
 
@@ -19025,7 +19052,7 @@ function removeObserver(ctx) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_AddPopup_vue__ = __webpack_require__(8);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_cca333b8_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_AddPopup_vue__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0f1b3c5a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_AddPopup_vue__ = __webpack_require__(36);
 function injectStyle (ssrContext) {
   __webpack_require__(34)
 }
@@ -19045,7 +19072,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_AddPopup_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_cca333b8_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_AddPopup_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0f1b3c5a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_AddPopup_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -19066,7 +19093,7 @@ var content = __webpack_require__(35);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("5069b640", content, true, {});
+var update = __webpack_require__(2)("d737c18a", content, true, {});
 
 /***/ }),
 /* 35 */
@@ -19077,7 +19104,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, ".c-popup{position:fixed;width:100%;height:100%;display:flex;z-index:100;left:0;top:0}.c-popup__cont{background:#fff;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:15px;overflow:hidden;border:1px solid #dcdcdc;box-sizing:border-box;display:flex;justify-content:space-between}.c-popup__cont__wrapper{width:100%;height:100%}.c-popup__cont__header{display:flex;justify-content:center;align-items:center;width:100%;padding:20px 0;background:#fafafe;box-sizing:border-box}.c-popup__cont__header .icon-close{font-size:1.125rem;cursor:pointer;position:absolute;right:1.5rem;color:#707070}.c-popup__cont__footer{display:flex;justify-content:space-between;box-sizing:border-box;align-items:center;width:100%;padding:17px 1.5rem;border-top:1px solid #eee}.c-popup__cont__title{font-size:1.125rem;color:#515151}", ""]);
+exports.push([module.i, ".c-popup{position:fixed;width:100%;height:100%;display:flex;z-index:100;left:0;top:0}.c-popup__cont{background:#fff;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:15px;overflow:hidden;border:1px solid #dcdcdc;box-sizing:border-box;display:flex;justify-content:space-between;width:90%}.c-popup__cont__wrapper{width:100%;height:100%}.c-popup__cont__header{display:flex;justify-content:center;align-items:center;width:100%;padding:20px 0;background:#fafafe;box-sizing:border-box}.c-popup__cont__header .icon-close{font-size:1.125rem;cursor:pointer;position:absolute;right:1.5rem;color:#707070}.c-popup__cont__footer{display:flex;justify-content:space-between;box-sizing:border-box;align-items:center;width:100%;padding:17px 1.5rem;border-top:1px solid #eee}.c-popup__cont__title{font-size:1.125rem;color:#515151}", ""]);
 
 // exports
 
@@ -19087,7 +19114,7 @@ exports.push([module.i, ".c-popup{position:fixed;width:100%;height:100%;display:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"c-popup"},[_c('div',{staticClass:"black-bg"}),_vm._v(" "),_c('div',{staticClass:"c-popup__cont",style:({width: _vm.Width})},[_vm._t("sideCont"),_vm._v(" "),_c('div',{staticClass:"c-popup__cont__wrapper"},[_c('div',{staticClass:"c-popup__cont__header"},[_c('strong',{staticClass:"c-popup__cont__title"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('i',{staticClass:"icon-close",on:{"click":function($event){return _vm.$emit('close')}}})]),_vm._v(" "),_vm._t("cont"),_vm._v(" "),_c('div',{staticClass:"c-popup__cont__footer"},[_c('button',{staticClass:"c-btn",on:{"click":function($event){return _vm.$emit('close')}}},[_vm._v("Close")]),_vm._v(" "),_c('button',{staticClass:"c-btn full",class:_vm.BtnClass,on:{"click":function($event){return _vm.$emit('BtnEvt')}}},[_vm._v("Confirm")])])],2)],2)])}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"c-popup"},[_c('div',{staticClass:"black-bg"}),_vm._v(" "),_c('div',{staticClass:"c-popup__cont",style:({ 'max-width': _vm.Width })},[_vm._t("sideCont"),_vm._v(" "),_c('div',{staticClass:"c-popup__cont__wrapper"},[_c('div',{staticClass:"c-popup__cont__header"},[_c('strong',{staticClass:"c-popup__cont__title"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('i',{staticClass:"icon-close",on:{"click":function($event){return _vm.$emit('close')}}})]),_vm._v(" "),_vm._t("cont"),_vm._v(" "),_c('div',{staticClass:"c-popup__cont__footer"},[_c('button',{staticClass:"c-btn",on:{"click":function($event){return _vm.$emit('close')}}},[_vm._v("Close")]),_vm._v(" "),_c('button',{staticClass:"c-btn full",class:_vm.BtnClass,on:{"click":function($event){return _vm.$emit('BtnEvt')}}},[_vm._v("\n          Confirm\n        ")])])],2)],2)])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -19097,16 +19124,16 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Layout',{attrs:{"isHeader":false},scopedSlots:_vm._u([{key:"popup",fn:function(){return [_c('button',{staticClass:"icon-plus m-add-btn",on:{"click":function($event){_vm.AddPopup=true}}}),_vm._v(" "),_c('transition',{attrs:{"name":"fade"}},[(_vm.AddPopup)?_c('AddPopup',{staticClass:"task-popup",attrs:{"Width":'90%',"title":'Enter task',"BtnClass":_vm.BtnClass()},on:{"BtnEvt":function($event){return _vm.BtnEvt()},"close":function($event){return _vm.Close()}},scopedSlots:_vm._u([{key:"cont",fn:function(){return [_c('div',{staticClass:"task-popup__cont"},[_c('div',{staticClass:"c-input",class:("" + (_vm.isCheck.title ? 'clear' : ''))},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newTask.title),expression:"newTask.title"}],staticClass:"c-input__input",attrs:{"type":"text"},domProps:{"value":(_vm.newTask.title)},on:{"blur":function($event){_vm.isCheck.title = true},"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.newTask, "title", $event.target.value)}}}),_vm._v(" "),_c('label',{staticClass:"c-input__title",attrs:{"for":"sampleId"}},[_vm._v("Enter your task")])]),_vm._v(" "),_c('div',{staticClass:"c-input",class:("" + (_vm.isCheck.description ? 'clear' : ''))},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newTask.description),expression:"newTask.description"}],staticClass:"c-input__input",attrs:{"type":"text"},domProps:{"value":(_vm.newTask.description)},on:{"blur":function($event){_vm.isCheck.description = true},"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.newTask, "description", $event.target.value)}}}),_vm._v(" "),_c('label',{staticClass:"c-input__title",attrs:{"for":"sampleId"}},[_vm._v("Enter your description")])])])]},proxy:true}],null,false,3449147798)}):_vm._e()],1)]},proxy:true}])},[_c('div',{staticClass:"m-message"},[_c('div',{staticClass:"c-inner"},[_c('p',{staticClass:"m-message__title"},[_vm._v("Hello!")]),_vm._v(" "),_c('p',{staticClass:"m-message__name"},[_vm._v("Sweeney :)")])])]),_vm._v(" "),_c('div',{staticClass:"m-banner"},[_c('div',{staticClass:"c-inner"},[_c('div',{staticClass:"m-banner__wrapper"},[_c('strong',{staticClass:"m-banner__ongoing"},[_vm._v(_vm._s(_vm.OngoingLength()))]),_vm._v(" "),_c('div',[_c('p',{staticClass:"m-banner__message"},[_vm._v("Tasks for today")]),_vm._v(" "),_c('p',{staticClass:"m-banner__complete"},[_c('span',{staticClass:"m-banner__complete__num"},[_vm._v(_vm._s(_vm.CompletedLength()))]),_vm._v(" complete")])])])])]),_vm._v(" "),_c('div',{staticClass:"m-task"},[_c('div',{staticClass:"c-inner"},[_c('h3',{staticClass:"m-task__title ongoing"},[_vm._v("Ongoing Task")])]),_vm._v(" "),_c('swipe-list',{ref:"list",staticClass:"card",attrs:{"disabled":!_vm.enabled,"items":_vm.OngoingList,"item-key":"id"},on:{"swipeout:click":_vm.itemClick},scopedSlots:_vm._u([{key:"default",fn:function(ref){
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Layout',{attrs:{"isHeader":false},scopedSlots:_vm._u([{key:"popup",fn:function(){return [_c('button',{staticClass:"icon-plus m-add-btn",on:{"click":function($event){_vm.AddPopup = true}}}),_vm._v(" "),_c('transition',{attrs:{"name":"fade"}},[(_vm.AddPopup)?_c('AddPopup',{staticClass:"task-popup",attrs:{"Width":'360px',"title":'Enter task',"BtnClass":_vm.BtnClass()},on:{"BtnEvt":function($event){return _vm.BtnEvt()},"close":function($event){return _vm.Close()}},scopedSlots:_vm._u([{key:"cont",fn:function(){return [_c('div',{staticClass:"task-popup__cont"},[_c('div',{staticClass:"c-input",class:("" + (_vm.isCheck.title ? 'clear' : ''))},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newTask.title),expression:"newTask.title"}],staticClass:"c-input__input",attrs:{"type":"text"},domProps:{"value":(_vm.newTask.title)},on:{"blur":function($event){_vm.isCheck.title = true},"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.newTask, "title", $event.target.value)}}}),_vm._v(" "),_c('label',{staticClass:"c-input__title",attrs:{"for":"sampleId"}},[_vm._v("Enter your task")])]),_vm._v(" "),_c('div',{staticClass:"c-input",class:("" + (_vm.isCheck.description ? 'clear' : ''))},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newTask.description),expression:"newTask.description"}],staticClass:"c-input__input",attrs:{"type":"text"},domProps:{"value":(_vm.newTask.description)},on:{"blur":function($event){_vm.isCheck.description = true},"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.newTask, "description", $event.target.value)}}}),_vm._v(" "),_c('label',{staticClass:"c-input__title",attrs:{"for":"sampleId"}},[_vm._v("Enter your description")])])])]},proxy:true}],null,false,3449147798)}):_vm._e()],1)]},proxy:true}])},[_c('div',{staticClass:"m-message"},[_c('div',{staticClass:"c-inner"},[_c('p',{staticClass:"m-message__title"},[_vm._v("Hello!")]),_vm._v(" "),_c('p',{staticClass:"m-message__name"},[_vm._v("Sweeney :)")])])]),_vm._v(" "),_c('div',{staticClass:"m-banner"},[_c('div',{staticClass:"c-inner"},[_c('div',{staticClass:"m-banner__wrapper"},[_c('strong',{staticClass:"m-banner__ongoing"},[_vm._v(_vm._s(_vm.OngoingLength()))]),_vm._v(" "),_c('div',[_c('p',{staticClass:"m-banner__message"},[_vm._v("Tasks for today")]),_vm._v(" "),_c('p',{staticClass:"m-banner__complete"},[_c('span',{staticClass:"m-banner__complete__num"},[_vm._v(_vm._s(_vm.CompletedLength()))]),_vm._v("\n            complete\n          ")])])])])]),_vm._v(" "),_c('div',{staticClass:"m-task"},[_c('div',{staticClass:"c-inner"},[_c('h3',{staticClass:"m-task__title ongoing"},[_vm._v("Ongoing Task")])]),_vm._v(" "),_c('swipe-list',{ref:"list",staticClass:"card",attrs:{"disabled":!_vm.enabled,"items":_vm.OngoingList,"item-key":"id"},on:{"swipeout:click":_vm.itemClick},scopedSlots:_vm._u([{key:"default",fn:function(ref){
 var item = ref.item;
 var index = ref.index;
-return [_c('div',{staticClass:"m-task__item"},[_c('label',{staticClass:"check"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.ischeck),expression:"item.ischeck"}],attrs:{"type":"checkbox"},domProps:{"checked":_vm.OngoingCEvt(index,item.ischeck),"checked":Array.isArray(item.ischeck)?_vm._i(item.ischeck,null)>-1:(item.ischeck)},on:{"change":function($event){var $$a=item.ischeck,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(item, "ischeck", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(item, "ischeck", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(item, "ischeck", $$c)}}}}),_vm._v(" "),_c('i',{staticClass:"check__mark icon-check"})]),_vm._v(" "),_c('div',{staticClass:"m-task__item__txtbox"},[_c('p',{staticClass:"m-task__item__task"},[_vm._v(_vm._s(item.task))]),_vm._v(" "),_c('span',{staticClass:"m-task__item__description"},[_vm._v(_vm._s(item.description))])]),_vm._v(" "),_c('p',{staticClass:"m-task__item__timebox"},[_c('i',{staticClass:"icon-clock"}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.time))])])])]}},{key:"right",fn:function(ref){
+return [_c('div',{staticClass:"m-task__item"},[_c('label',{staticClass:"check"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.ischeck),expression:"item.ischeck"}],attrs:{"type":"checkbox"},domProps:{"checked":_vm.OngoingCEvt(index, item.ischeck),"checked":Array.isArray(item.ischeck)?_vm._i(item.ischeck,null)>-1:(item.ischeck)},on:{"change":function($event){var $$a=item.ischeck,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(item, "ischeck", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(item, "ischeck", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(item, "ischeck", $$c)}}}}),_vm._v(" "),_c('i',{staticClass:"check__mark icon-check"})]),_vm._v(" "),_c('div',{staticClass:"m-task__item__txtbox"},[_c('p',{staticClass:"m-task__item__task"},[_vm._v(_vm._s(item.task))]),_vm._v(" "),_c('span',{staticClass:"m-task__item__description"},[_vm._v(_vm._s(item.description))])]),_vm._v(" "),_c('p',{staticClass:"m-task__item__timebox"},[_c('i',{staticClass:"icon-clock"}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.time))])])])]}},{key:"right",fn:function(ref){
 var item = ref.item;
 var index = ref.index;
-return [_c('div',{staticClass:"swipeout-action m-task__option"},[_c('button',{staticClass:"icon-menu",on:{"click":function($event){return _vm.PopupOn(index,item)}}}),_vm._v(" "),_c('button',{staticClass:"icon-delete",on:{"click":function($event){return _vm.remove(item)}}})])]}}])})],1),_vm._v(" "),_c('hr',{staticClass:"c-hr"}),_vm._v(" "),_c('div',{staticClass:"m-task"},[_c('div',{staticClass:"c-inner"},[_c('h3',{staticClass:"m-task__title completed"},[_vm._v("Completed Task")])]),_vm._v(" "),_c('swipe-list',{ref:"list",staticClass:"card",attrs:{"disabled":!_vm.enabled,"items":_vm.CompletedList,"item-key":"id"},on:{"swipeout:click":_vm.itemClick},scopedSlots:_vm._u([{key:"default",fn:function(ref){
+return [_c('div',{staticClass:"swipeout-action m-task__option"},[_c('button',{staticClass:"icon-menu",on:{"click":function($event){return _vm.PopupOn(index, item)}}}),_vm._v(" "),_c('button',{staticClass:"icon-delete",on:{"click":function($event){return _vm.remove(item)}}})])]}}])})],1),_vm._v(" "),_c('hr',{staticClass:"c-hr"}),_vm._v(" "),_c('div',{staticClass:"m-task"},[_c('div',{staticClass:"c-inner"},[_c('h3',{staticClass:"m-task__title completed"},[_vm._v("Completed Task")])]),_vm._v(" "),_c('swipe-list',{ref:"list",staticClass:"card",attrs:{"disabled":!_vm.enabled,"items":_vm.CompletedList,"item-key":"id"},on:{"swipeout:click":_vm.itemClick},scopedSlots:_vm._u([{key:"default",fn:function(ref){
 var item = ref.item;
 var index = ref.index;
-return [_c('div',{staticClass:"m-task__item"},[_c('label',{staticClass:"check"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.ischeck),expression:"item.ischeck"}],attrs:{"type":"checkbox"},domProps:{"checked":_vm.CompletedCEvt(index,item.ischeck),"checked":Array.isArray(item.ischeck)?_vm._i(item.ischeck,null)>-1:(item.ischeck)},on:{"change":function($event){var $$a=item.ischeck,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(item, "ischeck", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(item, "ischeck", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(item, "ischeck", $$c)}}}}),_vm._v(" "),_c('i',{staticClass:"check__mark icon-check"})]),_vm._v(" "),_c('div',{staticClass:"m-task__item__txtbox"},[_c('p',{staticClass:"m-task__item__task"},[_vm._v(_vm._s(item.task))]),_vm._v(" "),_c('span',{staticClass:"m-task__item__description"},[_vm._v(_vm._s(item.description))])]),_vm._v(" "),_c('p',{staticClass:"m-task__item__timebox"},[_c('i',{staticClass:"icon-clock"}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.time))])])])]}},{key:"right",fn:function(ref){
+return [_c('div',{staticClass:"m-task__item"},[_c('label',{staticClass:"check"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.ischeck),expression:"item.ischeck"}],attrs:{"type":"checkbox"},domProps:{"checked":_vm.CompletedCEvt(index, item.ischeck),"checked":Array.isArray(item.ischeck)?_vm._i(item.ischeck,null)>-1:(item.ischeck)},on:{"change":function($event){var $$a=item.ischeck,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(item, "ischeck", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(item, "ischeck", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(item, "ischeck", $$c)}}}}),_vm._v(" "),_c('i',{staticClass:"check__mark icon-check"})]),_vm._v(" "),_c('div',{staticClass:"m-task__item__txtbox"},[_c('p',{staticClass:"m-task__item__task"},[_vm._v(_vm._s(item.task))]),_vm._v(" "),_c('span',{staticClass:"m-task__item__description"},[_vm._v(_vm._s(item.description))])]),_vm._v(" "),_c('p',{staticClass:"m-task__item__timebox"},[_c('i',{staticClass:"icon-clock"}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.time))])])])]}},{key:"right",fn:function(ref){
 var item = ref.item;
 return [_c('div',{staticClass:"swipeout-action m-task__option"},[_c('button',{staticClass:"icon-delete",on:{"click":function($event){return _vm.remove(item)}}})])]}}])})],1),_vm._v(" "),_c('div',{staticClass:"end-ui"})])}
 var staticRenderFns = []
